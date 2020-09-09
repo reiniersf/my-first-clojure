@@ -19,7 +19,7 @@
 
 (def bank
   (ref {"ID7327328" (new_account "ID7327328" 10210)
-        "ID0027321" (new_account "ID0027321" 10)
+        "ID0027321" (new_account "ID0027321" 11)
         "ID2329862" (new_account "ID2329862" 1127)
         "ID7102367" (new_account "ID7102367" 210)
         }))
@@ -84,7 +84,7 @@
   (let [buyer_bank_account (@bank buyer)]
     (cond
       (< item_price 0) false
-      (not (nil? buyer_bank_account)) (if (> (:balance buyer_bank_account) item_price)
+      (not (nil? buyer_bank_account)) (if (>= (:balance buyer_bank_account) item_price)
                                         true
                                         (do
                                           (set-outcome
